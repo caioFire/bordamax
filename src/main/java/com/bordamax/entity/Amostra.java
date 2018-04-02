@@ -2,6 +2,8 @@ package com.bordamax.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fire on 13/03/18.
@@ -24,14 +26,14 @@ public class Amostra implements Serializable{
     @Column( name = "descricao",length=50)
     private String descricao;
 
-    @Column( name = "url_imagem",length=50)
-    private String urlImagem;
-
     @Column( name = "portfolio", nullable = false)
     private Boolean portfolio = false;
 
     @Column( name = "status", nullable = false)
     private Boolean status = true;
+
+    @OneToMany(mappedBy = "amostra", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Imagem> urlImagens;
 
     @ManyToOne
     @Basic(optional = false)
@@ -101,5 +103,20 @@ public class Amostra implements Serializable{
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Imagem> getUrlImagens() {
+        return urlImagens;
+    }
+
+    public void setUrlImagens(List<Imagem> urlImagens) {
+        this.urlImagens = urlImagens;
+    }
+
+    public void addUrlImagem(Imagem urlImagem) {
+        if(this.urlImagens == null){
+            this.urlImagens = new ArrayList<>();
+        }
+        this.urlImagens.add(urlImagem);
     }
 }
