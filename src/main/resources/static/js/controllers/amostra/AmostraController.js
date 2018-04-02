@@ -100,5 +100,27 @@
             }
         });
 
+        vm.openAmostraViewModal = function (idAmostra) {
+            var modalInstance = $uibModal.open({
+                templateUrl: "/amostraViewModal.html",
+                bindToController: true,
+                controller: 'amostraViewModalController',
+                controllerAs: 'vm',
+                scope: $scope,
+                size: 'lg',
+                keyboard: false,
+                backdrop: 'true',
+                resolve:
+                    {'params':function(){
+                        return idAmostra;
+                    }}
+            });modalInstance.result.then(function (param) {
+                // if(param) {
+                //     vm.tableParams.reload();
+                //     vm.mensagem = param;
+                // }
+            })
+        }
+
     });
 })();

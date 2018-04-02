@@ -9,7 +9,6 @@
                         <h2>Cadastro de Amostras</h2>
                     </div>
                 </div>
-
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div ng-if="vm.mensagem" class="alert alert-danger alert-dismissible fade in" role="alert">
@@ -18,7 +17,7 @@
                             <strong>Atenção</strong> {{vm.mensagem}}
                         </div>
                         <form class="form-horizontal form-label-left">
-                            <div class="form-group col-md-9 col-sm-9col-xs-12">
+                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label ">*Código</label>
                                 <div>
                                     <input type="text" class="form-control" ng-model="vm.amostra.codigo" required>
@@ -40,7 +39,6 @@
                                             ng-model="vm.amostra.localizacao"
                                             ng-options="localizacao.nome for localizacao in vm.localizacoes track by localizacao.id" required>
                                     </select>
-
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -50,27 +48,26 @@
                                         <input type="checkbox" class="flat" ng-model="vm.amostra.portfolio"> Portfólio
                                     </label>
                                 </div>
-
-
-
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                <label>*Imagens da Amostra</label>
+                                <div class="x_panel">
+                                    <img src="" style="height: 100%; width: 100%;" class="">
+                                </div>
                                 <input id="uploadinput" type="file" class="hide"  file
                                        ngf-select="vm.upload($files,false,['xml','img','pdf'])"
                                        ng-model="picFileOcorrencia"
                                        name="file" accept="/*" ngf-max-size="20MB" ngf-fix-orientation="true">
-                                <button class="btn btn-info btn-block btn-lg"
+                                <button class="btn btn-info btn-block"
                                         onclick="document.getElementById('uploadinput').click()">
                                     <i class="fa fa-clipboard"></i> Escolher Arquivos
                                 </button>
-
-
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="vm.cadastrarAmostra()">Salvar</button>

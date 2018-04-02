@@ -43,12 +43,18 @@
                     <div class="x_content">
                         <table ng-table="vm.tableParams" class="table table-bordered table-hover text-center" >
                             <tr ng-repeat="amostra in $data" >
-                                <td title="'Código Amostra'" sortable="'nome'"> {{amostra.codigo}}</td>
-                                <td title="'Descrição'" sortable="'descricao'">{{amostra.descricao}}</td>
-                                <td title="'Cliente'" sortable="'cliente'">{{amostra.cliente.nome}}</td>
-                                <td title="'Localizaçãoo'" sortable="'localizacao'">{{amostra.localizacao.nome}}</td>
-                                <td title="'Portfólio'" sortable="'portfolio'">{{amostra.portfolio}}</td>
-                                <td title="'Status'" sortable="'status'">{{amostra.status}}</td>
+                                <td title="'Código Amostra'" sortable="'codigo'" ng-click="vm.openAmostraViewModal(amostra)">
+                                    {{amostra.codigo}}</td>
+                                <td title="'Descrição'" sortable="'descricao'" ng-click="vm.openAmostraViewModal(amostra)">
+                                    {{amostra.descricao}}</td>
+                                <td title="'Cliente'" sortable="'cliente.nome'" ng-click="vm.openAmostraViewModal(amostra)">
+                                    {{amostra.cliente.nome}}</td>
+                                <td title="'Localizaçãoo'" sortable="'localizacao.nome'" ng-click="vm.openAmostraViewModal(amostra)">
+                                    {{amostra.localizacao.nome}}</td>
+                                <td title="'Portfólio'" sortable="'portfolio'" ng-click="vm.openAmostraViewModal(amostra)">
+                                    {{amostra.portfolio}}</td>
+                                <td title="'Status'" sortable="'status'" ng-click="vm.openAmostraViewModal(amostra)">
+                                    {{amostra.status}}</td>
                                 <td title="'Ações'" class="col-md-2">
                                     <a href="#" ng-click="vm.openAmostraModal(amostra)" title="Editar" class="fa fa-edit"
                                        style="font-size:24px; margin-left: 10px">

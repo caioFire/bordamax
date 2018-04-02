@@ -26,7 +26,8 @@ public class PageController {
     public String newAmostra() {
         return "view/amostra/amostraModal";
     }
-
+    @GetMapping("/amostraViewModal")
+    public String amostraViewModal() {return "view/amostra/amostraViewModal";}
 
     @GetMapping("/clientes")
     public String clientes() {return "view/cliente/clientes";}

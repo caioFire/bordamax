@@ -1,0 +1,38 @@
+<div ng-app="appAmostra"  class="modal-demo">
+
+    <div class="modal-body" id="modal-body">
+
+        <div class="right_col" role="main" data-layout-fragment="content">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h2>Amostra</h2>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <form class="form-horizontal form-label-left">
+                            <div class="x_panel col-md-12 ">
+
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <h2><strong>Código:</strong> {{vm.amostra.codigo}}</h2>
+                                <h2><strong>Descrição:</strong> {{vm.amostra.descricao}}</h2>
+                                <h2><strong>Cliente:</strong> {{vm.amostra.cliente.nome}}</h2>
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <h2><strong>Localização:</strong> {{vm.amostra.localizacao.nome}}</h2>
+                                <h2><strong>Status:</strong> {{vm.amostra.status}}</h2>
+                                <h2><strong>Portfolio:</strong> {{vm.amostra.portfolio}}</h2>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="vm.fecharModal()">Fechar</button>
+    </div>
+
+</div>
