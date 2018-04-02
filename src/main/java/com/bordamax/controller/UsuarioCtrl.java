@@ -55,7 +55,7 @@ public class UsuarioCtrl {
 
     @PostMapping("new")
     public ResponseEntity<?> newUser(@RequestBody Usuario usuario) {
-        String mensagem = "Registro salvo com sucesso!";
+        String mensagem = "Registro cadastrado com sucesso!";
         Usuario u = usuarioRepository.findFirstByNome(usuario.getNome());
         if( u != null){
             mensagem = "Já existe um registro cadastrado com esse nome!";

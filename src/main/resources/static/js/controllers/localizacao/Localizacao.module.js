@@ -6,7 +6,7 @@
     'use strict';
 
     angular.module("appLocalizacao",
-        ["ui.bootstrap", "ngTable", "appBordamax"]
+        ["ui.bootstrap", "ngTable", "appBordamax", "oitozero.ngSweetAlert"]
     );
 
 })();

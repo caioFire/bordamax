@@ -37,9 +37,9 @@ public class AmostraCtrl {
         return new ResponseEntity<>(amostraRepository.count(), HttpStatus.OK);
     }
 
-    @GetMapping("getAllByStatus")
-    public ResponseEntity<?> getAllByStatus(boolean status) {
-        return new ResponseEntity<>(amostraRepository.findAllByStatus(status), HttpStatus.OK);
+    @GetMapping("getAllByStatusAndPortfolio")
+    public ResponseEntity<?> getAllByStatusAndPortfolio(boolean status, boolean portfolio) {
+        return new ResponseEntity<>(amostraRepository.findAllByStatusAndPortfolio(status, portfolio), HttpStatus.OK);
     }
 
     @GetMapping("getAllBy")
@@ -50,9 +50,10 @@ public class AmostraCtrl {
         Page<Localizacao> lista = amostraRepository.findAll(predicate, pageable);
         return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
     }
+
     @PostMapping("new")
     public ResponseEntity<?> newUser(@RequestBody Amostra amostra) {
-        String mensagem = "Registro salvo com sucesso!";
+        String mensagem = "Registro cadastrado com sucesso!";
         Amostra a = amostraRepository.findFirstByCodigo(amostra.getCodigo());
         if(a != null){
             mensagem = "Já existe um registro cadastrado com esse nome!";

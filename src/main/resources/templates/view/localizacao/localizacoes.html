@@ -29,6 +29,16 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <div ng-if="vm.mensagemSucesso" class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Atenção</strong> {{vm.mensagemSucesso}}
+                    </div>
+                    <div ng-if="vm.mensagemAlerta" class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Atenção</strong> {{vm.mensagemAlerta}}
+                    </div>
                     <div class="row-fluid col-md-4">
                         <h2 class="col-md-2">Pesquisa</h2>
                         <input type="text" class="form-control col-md-2" ng-model="vm.filtroNome">

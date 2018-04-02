@@ -59,7 +59,7 @@ public class LocalizacaoCtrl {
 
     @PostMapping("new")
     public ResponseEntity<?> newLocalizacao(@RequestBody Localizacao localizacao) {
-        String mensagem = "Registro salvo com sucesso!";
+        String mensagem = "Registro cadastrado com sucesso!";
         if(localizacaoRepository.findFirstByNome(localizacao.getNome()) != null){
             mensagem = "Já existe um registro cadastrado com esse nome!";
         } else{
@@ -72,7 +72,7 @@ public class LocalizacaoCtrl {
     public ResponseEntity<?> update(@RequestBody Localizacao localizacao) {
         String mensagem = "Registro alterado com sucesso!";
         Localizacao local = localizacaoRepository.findFirstByNome(localizacao.getNome());
-        if( local != null){
+        if( local != null  && local.getId() != localizacao.getId()){
             mensagem = "Já existe um registro cadastrado com esse nome!";
         } else{
             localizacaoRepository.save(localizacao);

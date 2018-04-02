@@ -7,7 +7,7 @@
 
     var appCliente = angular.module("appCliente");
 
-    appCliente.controller ("clienteController", function ($scope, $http, $uibModal, NgTableParams, ClienteService, Utils){
+    appCliente.controller ("clienteController", function ($scope, $http, $uibModal, NgTableParams, ClienteService, Utils, UtilsAlertsFactory){
         var vm = this;
         vm.clientes = [];
 
@@ -31,9 +31,21 @@
                         return idCliente;
                     }}
             });modalInstance.result.then(function (param) {
-                if(param)
+                if (param){
                     vm.tableParams.reload();
+                    vm.mensagemSucesso = param;
+                }
             })
+        }
+
+        function validaRetorno(dados) {
+            if(dados.mensagem === "Registro excluido com sucesso!"){
+                vm.mensagemAlerta = null;
+                vm.mensagemSucesso = dados.mensagem;
+            } else {
+                vm.mensagemSucesso = null;
+                vm.mensagemAlerta = dados.mensagem;
+            }
         }
 
         vm.excluirCliente = function (id) {
@@ -41,6 +53,7 @@
                 method: 'POST',
                 url: 'http://localhost:8091/cliente/delete', data: id
             }).then(function successCallback(response) {
+                validaRetorno(response.data);
                 vm.tableParams.reload();
             }, function errorCallback(response) {
                 console.log(response.status);
@@ -48,9 +61,15 @@
         };
 
         vm.excluir = function(id) {
-            if(window.confirm("Deseja excluir este registro?")){
-                vm.excluirCliente(id);
-            }
+            UtilsAlertsFactory.callback(
+                {'title': '<h4>' + "Deseja excluir este registro?" + '</h4>', 'text':""},
+                {'confirm': 'Sim','cancel':'Não'},
+                '', [function () {
+                    vm.excluirCliente(id);
+                }],
+                ''
+                // 'img/icones/icon-app-notificacao.png'
+            );
         }
 
         vm.reloadTable =function(){

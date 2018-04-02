@@ -32,9 +32,19 @@
                         return idAmostra;
                     }}
             });modalInstance.result.then(function (param) {
-                if(param)
+                if(param) {
                     vm.tableParams.reload();
+                    vm.mensagem = param;
+                }
             })
+        }
+
+        function validaRetorno(dados) {
+            if(dados.mensagem === "Registro excluido com sucesso!"){
+                vm.mensagem = dados.mensagem;
+            } else{
+                false;
+            }
         }
 
         vm.excluirAmostra = function (id) {
@@ -42,6 +52,7 @@
                 method: 'POST',
                 url: 'http://localhost:8091/amostra/delete', data: id
             }).then(function successCallback(response) {
+                validaRetorno(response.data);
                 vm.tableParams.reload();
             }, function errorCallback(response) {
                 console.log(response.status);

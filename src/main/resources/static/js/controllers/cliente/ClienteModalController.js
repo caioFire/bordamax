@@ -61,8 +61,9 @@
                     if(retorno){
                         vm.mensagem = response.data.mensagem;
                     } else{
-                        vm.fecharModal(true);
-                    }                }, function errorCallback(response) {
+                        vm.fecharModal(response.data.mensagem);
+                    }
+                }, function errorCallback(response) {
                     console.log(response.status);
                 });
             } else{

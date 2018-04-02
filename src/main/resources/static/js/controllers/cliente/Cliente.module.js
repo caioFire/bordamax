@@ -7,7 +7,7 @@
     'use strict';
 
     angular.module("appCliente",
-        ["ui.bootstrap", "ngTable", "appBordamax"]
+        ["ui.bootstrap", "ngTable", "appBordamax", , "oitozero.ngSweetAlert"]
     );
 
 })();

@@ -57,7 +57,7 @@ public class ClienteCtrl {
     }
     @PostMapping("new")
     public ResponseEntity<?> newUser(@RequestBody Cliente cliente) {
-        String mensagem = "Registro salvo com sucesso!";
+        String mensagem = "Registro cadastrado com sucesso!";
         Cliente c = clienteRepository.findFirstByNome(cliente.getNome());
         if(c != null){
             mensagem = "Já existe um registro cadastrado com esse nome!";
@@ -71,7 +71,7 @@ public class ClienteCtrl {
     public ResponseEntity<?> update(@RequestBody Cliente cliente) {
         String mensagem = "Registro alterado com sucesso!";
         Cliente c = clienteRepository.findFirstByNome(cliente.getNome());
-        if(c != null){
+        if(c != null && c.getId() != cliente.getId()){
             mensagem = "Já existe um registro cadastrado com esse nome!";
         } else{
             clienteRepository.save(cliente);
@@ -87,6 +87,6 @@ public class ClienteCtrl {
         } else{
             clienteRepository.delete(id);
         }
-        return new ResponseEntity<>("{\"mensagem\":\"\""+mensagem+"\"\"}", HttpStatus.OK);
+        return new ResponseEntity<>("{\"mensagem\":\""+mensagem+"\"}", HttpStatus.OK);
     }
 }

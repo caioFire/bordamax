@@ -7,7 +7,7 @@
 
     var appUsuario = angular.module("appUsuario");
 
-    appUsuario.controller ("usuarioController", function ($scope, $http, $uibModal){
+    appUsuario.controller ("usuarioController", function ($scope, $http, $uibModal, UtilsAlertsFactory){
 
         var vm = this;
 
