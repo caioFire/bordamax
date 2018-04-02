@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="appHome" lang="en" data-layout-decorate="~{fragments/layout}">
+<head>
+    <title>Home</title>
+</head>
+
+<body ng-controller="homeController as vm">
+    <div class="right_col" role="main" data-layout-fragment="content">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Indicadores Bordamax</h3>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel tile ">
+                        <div class="x_title">
+                            <h2>Cadastros</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="" role="main">
+                            <div class="row tile_count">
+                                <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                                    <span class="count_top"><i class="fa fa-image"></i> Amostras</span>
+                                    <div class="count">{{vm.amostras}}</div>
+                                    <span class="count_bottom"><i class="green">Cadastradas</i></span>
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                                    <span class="count_top"><i class="fa fa-building"></i> Clientes</span>
+                                    <div class="count">{{vm.clientes}}</div>
+                                    <span class="count_bottom"><i class="green">Cadastrados</i></span>
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                                    <span class="count_top"><i class="fa fa-search"></i> Localizações</span>
+                                    <div class="count">{{vm.localizacoes}}</div>
+                                    <span class="count_bottom"><i class="green">Cadastradas</i></span>
+                                </div>
+                                <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                                    <span class="count_top"><i class="fa fa-user"></i> Usuarios</span>
+                                    <div class="count">{{vm.usuarios}}</div>
+                                    <span class="count_bottom"><i class="green">Cadastrados</i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+</body>
+</html>

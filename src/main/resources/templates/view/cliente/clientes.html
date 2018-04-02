@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="appCliente" lang="en" data-layout-decorate="~{fragments/layout}">
+<head>
+    <title>Clientes</title>
+</head>
+
+<body ng-controller="clienteController as vm">
+    <div class="right_col" role="main" data-layout-fragment="content">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Clientes</h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+                        <div class="input-group">
+                            <button type="button" ng-click="vm.openClienteModal()" class="btn btn-success btn-block"
+                                    data-toggle="modal" data-target="#clienteModal">
+                                Novo Cliente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="row-fluid col-md-4">
+                            <h2 class="col-md-2">Pesquisa</h2>
+                            <input type="text" class="form-control col-md-2" ng-model="vm.filtroNome">
+                        </div>
+                            <br><br>
+                            <button class="btn btn-primary " ng-click="vm.reloadTable()">Pesquisar</button>
+                            <button class="btn btn-default " ng-click="vm.limparFiltro()">Limpar</button>
+                        <br><br>
+                        <div class="x_content">
+                            <table ng-table="vm.tableParams" class="table table-bordered table-hover text-center" >
+                                <tr ng-repeat="cliente in $data" >
+                                    <td title="'Cliente'" sortable="'nome'"> {{cliente.nome}}</td>
+                                    <td title="'Status'" sortable="'status'">{{cliente.status}}</td>
+                                    <td title="'Ações'" class="col-md-2">
+                                        <a href="#" ng-click="vm.openClienteModal(cliente)" title="Editar" class="fa fa-edit"
+                                           style="font-size:24px; margin-left: 10px">
+                                        </a>
+                                        <a href="#" ng-click="vm.excluir(cliente.id)" title="Excluir" class="fa fa-trash"
+                                           style="font-size:24px; margin-left: 10px">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

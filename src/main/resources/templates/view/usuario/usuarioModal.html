@@ -1,0 +1,60 @@
+<div ng-app="appUsuario" class="modal-demo">
+
+    <div class="modal-body" id="modal-body">
+
+        <div class="right_col" role="main" data-layout-fragment="content">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h2>Cadastro de Usuários</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div ng-if="vm.mensagem" class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Atenção</strong> {{vm.mensagem}}
+                        </div>
+                        <div ng-if="vm.mensagem" class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Atenção</strong> {{vm.mensagem}}
+                        </div>
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group col-md-9 col-sm-9col-xs-12">
+                                <label class="control-label ">*Nome</label>
+                                <div>
+                                    <input type="text" class="form-control" ng-model="vm.usuario.nome">
+                                </div>
+                                <label class="control-label ">*Login</label>
+                                <div>
+                                    <input type="text" class="form-control" ng-model="vm.usuario.identificacao">
+                                </div>
+                                <label class="control-label ">*Senha</label>
+                                <div>
+                                    <input type="password" class="form-control" ng-model="vm.usuario.senha">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat" ng-model="vm.usuario.status" checked="checked">
+                                        Ativo
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="vm.cadastrarUsuario()">Salvar</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.fecharModal()">Cancelar</button>
+</div>
+
+
+</div>
