@@ -88,7 +88,7 @@ public class UsuarioCtrl {
     @PostMapping("delete")
     public ResponseEntity<?> delete(@RequestBody Long id) {
         usuarioRepository.delete(id);
-        return new ResponseEntity<>("{\"mensagem\":\"Usuário excluído com sucesso!\"}", HttpStatus.OK);
+        return new ResponseEntity<>("{\"mensagem\":\"Registro excluido com sucesso!\"}", HttpStatus.OK);
     }
 
 

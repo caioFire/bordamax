@@ -12,23 +12,33 @@
 
     var appUsuario = angular.module("appUsuario");
 
-    appUsuario.controller ("usuarioModalController", function ($scope, $http, $uibModalInstance){
+    appUsuario.controller ("usuarioModalController", function ($scope, $http, $uibModalInstance, params){
 
         var vm = this;
         vm.usuario = {
             status: true
         };
 
-        vm.fecharModal = function () {
-            $uibModalInstance.dismiss('cancel param');
+        if(params){
+            vm.usuario = {
+                id: params.id,
+                nome: params.nome,
+                identificacao: params.identificacao,
+                senha: params.senha,
+                status: params.status
+            }
+        }
+
+        vm.fecharModal = function (param) {
+            $uibModalInstance.close(param);
         };
 
         function validaCampos(dados) {
-            if(!dados.codigo){
+            if(!dados.nome){
                 return "Favor preencher os campos obrigatorios (*)";
-            } else if(!dados.cliente){
+            } else if(!dados.senha){
                 return "Favor preencher os campos obrigatorios (*)";
-            } else if(!dados.localizacao){
+            } else if(!dados.identificacao){
                 return "Favor preencher os campos obrigatorios (*)";
             } else{
                 return false;
@@ -46,27 +56,29 @@
         vm.cadastrarUsuario = function () {
             vm.mensagem = false;
             let campos = validaCampos(vm.usuario);
-            if(!campos) {
+            if(!campos){
+                debugger
+                let url =  'http://localhost:8091/usuario/';
+                url += (params) ? 'update' : 'new';
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8091/usuario/new', data: vm.usuario
+                    url: url, data: vm.usuario
                 }).then(function successCallback(response) {
                     let retorno = validaRetorno(response.data);
                     if(retorno){
                         vm.mensagem = response.data.mensagem;
-                    } else {
-                        vm.fecharModal(true);
+                    } else{
+                        vm.fecharModal(response.data.mensagem);
                     }
-                },function errorCallback(response) {
+                }, function errorCallback(response) {
                     console.log(response.status);
                 });
-                vm.fecharModal();
             } else{
-                vm.mensagem = campos;
+                vm.mensagem = retorno;
             }
+
         };
+
 
     });
 })();
-
-
