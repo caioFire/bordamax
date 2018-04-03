@@ -30,6 +30,10 @@ public class Usuario implements Serializable {
     @Column( name = "status", nullable = false)
     private Boolean status = true;
 
+
+    @Column( name = "admin", nullable = false)
+    private Boolean admin = true;
+
     public Boolean getStatus() {
         return status;
     }
@@ -73,4 +77,14 @@ public class Usuario implements Serializable {
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+
 }

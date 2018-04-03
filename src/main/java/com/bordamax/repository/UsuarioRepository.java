@@ -23,4 +23,6 @@ public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, L
 
     Usuario findFirstByIdentificacao(String identificacao);
 
+    Usuario findByIdentificacao(String identificacao);
+
 }
