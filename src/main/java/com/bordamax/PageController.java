@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -15,15 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PageController {
 
-//    @GetMapping("/login")
-//    @PreAuthorize("hasRole('USER')")
-//    public String login() { return "/login";}
-
     @GetMapping("/login")
     public String login() { return "login";}
 
     @GetMapping("/home")
     public String home() { return "view/home";}
+
+    @GetMapping("/usuarios")
+    public String usuarios() {
+        return "view/usuario/usuarios";
+    }
+    @GetMapping("/usuarioModal")
+    public String newUsuario() { return "view/usuario/usuarioModal";}
 
     @GetMapping("/amostras")
     public String amostras() {
@@ -48,13 +52,6 @@ public class PageController {
     public String newLocalizacao() { return "view/localizacao/localizacaoModal";}
 
 
-    @GetMapping("/usuarios")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String usuarios() {
-        return "view/usuario/usuarios";
-    }
-    @GetMapping("/usuarioModal")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String newUsuario() { return "view/usuario/usuarioModal";}
+
 
 }
