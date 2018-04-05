@@ -42,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**").permitAll()
-                .antMatchers("/","/inicio").permitAll()
+                .antMatchers("/usuarios").hasAnyRole("AMDIN")
+//                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -51,29 +52,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
+                .logoutSuccessUrl("/login")
                 .permitAll();
 
+
+
+    }
+
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(custonUsuarioDetailService).passwordEncoder(new BCryptPasswordEncoder());
+//    }
+}
+
+
+
+// Funciona
 //        http
 //                .authorizeRequests()
-//                .antMatchers("/resources/**").permitAll()
+//                .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**").permitAll()
+//                .antMatchers("/","/inicio").permitAll()
 //                .anyRequest().authenticated()
 //                .and()
 //                .formLogin()
 //                .loginPage("/login")
+//                .defaultSuccessUrl("/home")
 //                .permitAll()
 //                .and()
 //                .logout()
 //                .permitAll();
-
-
-
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(custonUsuarioDetailService).passwordEncoder(new BCryptPasswordEncoder());
-    }
-}
 
 
 

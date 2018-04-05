@@ -49,10 +49,12 @@ public class PageController {
 
 
     @GetMapping("/usuarios")
+    @PreAuthorize("hasRole('ADMIN')")
     public String usuarios() {
         return "view/usuario/usuarios";
     }
     @GetMapping("/usuarioModal")
+    @PreAuthorize("hasRole('ADMIN')")
     public String newUsuario() { return "view/usuario/usuarioModal";}
 
 }

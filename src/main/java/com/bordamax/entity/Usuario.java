@@ -1,5 +1,7 @@
 package com.bordamax.entity;
 
+import com.bordamax.enuns.TipoUsuario;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -27,12 +29,17 @@ public class Usuario implements Serializable {
     @Column( name = "senha", length = 256, nullable = false)
     private String senha;
 
+    @Column( name = "email", length = 50, nullable = false)
+    private String email;
+
     @Column( name = "status", nullable = false)
     private Boolean status = true;
 
-
     @Column( name = "admin", nullable = false)
     private Boolean admin = true;
+
+    @Column( name = "tipo_usuario", nullable = false)
+    private TipoUsuario tipoUsuario;
 
     public Boolean getStatus() {
         return status;
@@ -78,6 +85,22 @@ public class Usuario implements Serializable {
         return serialVersionUID;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public Boolean getAdmin() {
         return admin;
     }
@@ -85,6 +108,4 @@ public class Usuario implements Serializable {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
-
-
 }

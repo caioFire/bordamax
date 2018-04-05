@@ -1,6 +1,11 @@
-<div class="sidebar-footer hidden-small" data-th-fragment="menu-footer-buttons">
+<div class="sidebar-footer hidden-small" data-th-fragment="menu-footer-buttons" xmlns:th="http://www.w3.org/1999/xhtml">
 <br>
-    <a data-toggle="tooltip" href="login.html" data-placement="top" title="Sair">
-        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-    </a>
+    <form action="/logout" method="post" >
+        <a  data-toggle="tooltip" type="submit" href="login.html" data-placement="top" title="Sair">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+        </a>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    </form>
+
+
 </div>
