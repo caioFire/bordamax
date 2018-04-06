@@ -1,5 +1,7 @@
 package com.bordamax.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ public class Roles implements GrantedAuthority {
     @Column( name = "role",length=50, nullable = false)
     private String role;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope=Amostra.class)
     @ManyToMany(mappedBy = "roles")
     private List<Usuario> usuarios;
 

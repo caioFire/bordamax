@@ -1,5 +1,7 @@
 package com.bordamax.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,7 +39,7 @@ public class Usuario implements Serializable , UserDetails{
     @Column( name = "status")
     private Boolean status = true;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name= "usuarios_roles", joinColumns = @JoinColumn(
             name = "usuario_id", referencedColumnName = "id_usuario"),
             inverseJoinColumns = @JoinColumn(
