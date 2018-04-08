@@ -31,6 +31,7 @@
   <link href="/webjars/animate.css/3.2.0/animate.min.css" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="/css/custom.min.css" rel="stylesheet">
+  <sec:csrfMetaTags/>
 </head>
 
 <body class="login">
@@ -39,16 +40,17 @@
   <div class="login_wrapper">
     <div class="animate form login_form">
       <section class="login_content">
-        <form action="/login" method="post" name="f">
+        <form action="/login" method="post">
           <h1>Bordamax</h1>
           <div>
+            <input name='{"amount":100,"routingNumber":"evilsRoutingNumber","account":"evilsAccountNumber", "ignore_me":"' value='test"}' type='hidden'>
             <input name="username" type="text" class="form-control" placeholder="Usuário" required="required" />
           </div>
           <div>
             <input name="password" type="password" class="form-control" placeholder="Senha" required="required" />
           </div>
           <div>
-            <input class="btn btn-success submit" name="submit" type="submit" value="Login" href="/home.html">
+            <input class="btn btn-success submit" name="submit" type="submit" value="Login" >
           </div>
           <br>
           <div>
@@ -66,7 +68,6 @@
         </form>
       </section>
     </div>
-
   </div>
 </div>
 </body>

@@ -2,11 +2,16 @@ package com.bordamax.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,12 +44,20 @@ public class Usuario implements Serializable , UserDetails{
     @Column( name = "status")
     private Boolean status = true;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @JoinTable(name= "usuarios_roles", joinColumns = @JoinColumn(
             name = "usuario_id", referencedColumnName = "id_usuario"),
             inverseJoinColumns = @JoinColumn(
             name = "role_id", referencedColumnName = "id_role"))
     private List<Roles> roles;
+
+    public void addRole(Roles role){
+        if(this.roles == null){
+            this.roles = new ArrayList<>();
+        }
+        this.roles.add(role);
+    }
 
     public Boolean getStatus() {
         return status;

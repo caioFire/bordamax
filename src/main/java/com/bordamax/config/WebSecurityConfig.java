@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -30,7 +30,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/usuario/getIndicador").permitAll()
+                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/login").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/home").hasAnyRole("ADMIN", "USER")
+
+                .antMatchers(HttpMethod.POST, "/cliente/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/amostra/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/localizacao/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/login").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/home").hasAnyRole("ADMIN", "USER")
+
+                .antMatchers(HttpMethod.GET, "/usuario/getIndicador").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN")
                 .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**").permitAll()
@@ -39,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/home",true)
                 .permitAll()
             .and()
                 .logout()
@@ -49,15 +61,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
             .and()
                 .csrf()
-                .disable();
+                .disable().authorizeRequests();
 
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(custonUsuarioDetailService).passwordEncoder(new BCryptPasswordEncoder());
-
     }
+
+
 }
 
 

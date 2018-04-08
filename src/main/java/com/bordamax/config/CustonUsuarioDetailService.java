@@ -34,7 +34,7 @@ public class CustonUsuarioDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = Optional.ofNullable(usuarioRepository.findByIdentificacao(username)).orElseThrow(()-> new UsernameNotFoundException("Usuario não encontrado!"));
-        return new User(usuario.getUsername(), usuario.getPassword(), true, true, true, true, usuario.getAuthorities());
+        return new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), true, true, true, usuario.getAuthorities());
     }
 }
 

@@ -2,7 +2,9 @@ package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
 import com.bordamax.entity.Localizacao;
+import com.bordamax.entity.Roles;
 import com.bordamax.entity.Usuario;
+import com.bordamax.repository.RoleRepository;
 import com.bordamax.repository.UsuarioRepository;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class UsuarioCtrl {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("getOne")
     public ResponseEntity<?> getOne(String nome) {
@@ -68,6 +73,9 @@ public class UsuarioCtrl {
         if(u != null){
             mensagem = "Já existe um registro cadastrado com esse login!";
         } else{
+            Roles roles = roleRepository.findFirstByRole("ROLE_USER");
+            usuario.addRole(roles);
+            usuario.setEmail("sdddv");
             usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
             usuarioRepository.save(usuario);
         }
