@@ -23,6 +23,10 @@
                                 <div>
                                     <input type="text" class="form-control" ng-model="vm.usuario.nome">
                                 </div>
+                                <label class="control-label ">*Email</label>
+                                <div>
+                                    <input type="text" class="form-control" ng-model="vm.usuario.email">
+                                </div>
                                 <label class="control-label ">*Login</label>
                                 <div>
                                     <input type="text" class="form-control" ng-model="vm.usuario.identificacao">
@@ -35,6 +39,10 @@
                                     <label>
                                         <input type="checkbox" class="flat" ng-model="vm.usuario.status" checked="checked">
                                         Ativo
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="flat" ng-model="vm.usuario.admin" checked="checked">
+                                        Administrador
                                     </label>
                                 </div>
                             </div>

@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @Repository
-public interface AmostraRepository extends PagingAndSortingRepository<Amostra, Long>, QueryDslPredicateExecutor<Localizacao> {
+public interface AmostraRepository extends PagingAndSortingRepository<Amostra, Long>, QueryDslPredicateExecutor<Amostra> {
 
     List<Amostra> findAllByStatusAndPortfolio(boolean status, boolean portfolio);
 

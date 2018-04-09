@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @Repository
-public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long>, QueryDslPredicateExecutor<Localizacao> {
+public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, Long>, QueryDslPredicateExecutor<Usuario> {
 
     List<Usuario> findAllByStatus(boolean status);
 

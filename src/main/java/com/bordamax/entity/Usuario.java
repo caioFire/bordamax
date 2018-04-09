@@ -1,15 +1,9 @@
 package com.bordamax.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.annotations.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,8 +38,10 @@ public class Usuario implements Serializable , UserDetails{
     @Column( name = "status")
     private Boolean status = true;
 
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @Column( name = "admin")
+    private Boolean admin;
+
+    @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(name= "usuarios_roles", joinColumns = @JoinColumn(
             name = "usuario_id", referencedColumnName = "id_usuario"),
             inverseJoinColumns = @JoinColumn(
@@ -119,6 +115,14 @@ public class Usuario implements Serializable , UserDetails{
         this.roles = roles;
     }
 
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return (Collection<? extends GrantedAuthority>) this.roles;
@@ -153,4 +157,7 @@ public class Usuario implements Serializable , UserDetails{
     public boolean isEnabled() {
         return true;
     }
+
+
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by fire on 13/03/18.
  */
 @Repository
-public interface ClienteRepository extends PagingAndSortingRepository<Cliente, Long>, QueryDslPredicateExecutor<Localizacao> {
+public interface ClienteRepository extends PagingAndSortingRepository<Cliente, Long>, QueryDslPredicateExecutor<Cliente> {
 
     List<Cliente> findAllByStatus(boolean status);
 

@@ -50,6 +50,8 @@
                             <tr ng-repeat="usuario in $data" >
                                 <td title="'Nome'" sortable="'nome'"> {{usuario.nome}}</td>
                                 <td title="'Login'" sortable="'identificacao'">{{usuario.identificacao}}</td>
+                                <td title="'Email'" sortable="'email'">{{usuario.email}}</td>
+                                <td title="'Administrador'" sortable="'roles'">{{usuario.admin}}</td>
                                 <td title="'Status'" sortable="'status'">{{usuario.status}}</td>
                                 <td title="'Ações'" class="col-md-2">
                                     <a href="#" ng-click="vm.openUsuarioModal(usuario)" title="Editar" class="fa fa-edit"

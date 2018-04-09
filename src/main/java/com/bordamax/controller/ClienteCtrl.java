@@ -52,7 +52,7 @@ public class ClienteCtrl {
         Pageable pageable = new PageRequest(filtros.getPaginaAtual(), filtros.getTamanhoPagina(),
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioCliente(filtros);
-        Page<Localizacao> lista = clienteRepository.findAll(predicate, pageable);
+        Page<Cliente> lista = clienteRepository.findAll(predicate, pageable);
         return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
     }
     @PostMapping("new")

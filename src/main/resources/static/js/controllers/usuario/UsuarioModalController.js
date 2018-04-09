@@ -16,16 +16,20 @@
 
         var vm = this;
         vm.usuario = {
-            status: true
+            status: true,
+            admin: false,
+
         };
 
         if(params){
             vm.usuario = {
                 id: params.id,
                 nome: params.nome,
+                email: params.email,
                 identificacao: params.identificacao,
                 senha: params.senha,
-                status: params.status
+                status: params.status,
+                admin: params.admin,
             }
         }
 
@@ -40,13 +44,18 @@
                 return "Favor preencher os campos obrigatorios (*)";
             } else if(!dados.identificacao){
                 return "Favor preencher os campos obrigatorios (*)";
+            } else if(!dados.email){
+                return "Favor preencher os campos obrigatorios (*)";
             } else{
                 return false;
             }
         }
 
         function validaRetorno(dados) {
-            if(dados.mensagem === "Já existe um registro cadastrado com esse nome!"){
+            if(dados.mensagem === "Já existe um registro cadastrado com esse nome!") {
+                return true;
+            }
+            else if(dados.mensagem === "Já existe um registro cadastrado com esse login!"){
                 return true;
             } else{
                 return false;
@@ -73,7 +82,7 @@
                     console.log(response.status);
                 });
             } else{
-                vm.mensagem = retorno;
+                vm.mensagem = campos;
             }
 
         };

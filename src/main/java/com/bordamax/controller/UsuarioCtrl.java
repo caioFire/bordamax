@@ -14,11 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
 
 import static com.bordamax.filter.UsuarioQuery.whereByCriterioUsuario;
 
@@ -58,7 +55,7 @@ public class UsuarioCtrl {
         Pageable pageable = new PageRequest(filtros.getPaginaAtual(), filtros.getTamanhoPagina(),
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioUsuario(filtros);
-        Page<Localizacao> lista = usuarioRepository.findAll(predicate, pageable);
+        Page<Usuario> lista = usuarioRepository.findAll(predicate, pageable);
         return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
     }
 
@@ -73,9 +70,12 @@ public class UsuarioCtrl {
         if(u != null){
             mensagem = "Já existe um registro cadastrado com esse login!";
         } else{
-            Roles roles = roleRepository.findFirstByRole("ROLE_USER");
-            usuario.addRole(roles);
-            usuario.setEmail("sdddv");
+            Roles role = roleRepository.findFirstByRole("ROLE_USER");
+            usuario.addRole(role);
+            if( usuario.getAdmin() == true){
+                role = roleRepository.findFirstByRole("ROLE_ADMIN");
+                usuario.addRole(role);
+            }
             usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
             usuarioRepository.save(usuario);
         }
@@ -90,9 +90,16 @@ public class UsuarioCtrl {
             mensagem = "Já existe um registro cadastrado com esse nome!";
         }
         u = usuarioRepository.findFirstByIdentificacao(usuario.getIdentificacao());
-        if( u != null && u.getId() != usuario.getId()){
+        if(u != null && u.getId() != usuario.getId()){
             mensagem = "Já existe um registro cadastrado com esse login!";
-        } else{
+        } else {
+            Roles role = roleRepository.findFirstByRole("ROLE_USER");
+            usuario.addRole(role);
+            role = roleRepository.findFirstByRole("ROLE_ADMIN");
+            if( usuario.getAdmin() == true ){
+                usuario.addRole(role);
+            }
+            usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
             usuarioRepository.save(usuario);
         }
         return new ResponseEntity<>("{\"mensagem\":\""+mensagem+"\"}", HttpStatus.OK);

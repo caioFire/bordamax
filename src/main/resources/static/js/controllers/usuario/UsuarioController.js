@@ -102,6 +102,9 @@
             }
         });
 
+        function concatRoles(roles) {
+
+        }
     });
 })();
 

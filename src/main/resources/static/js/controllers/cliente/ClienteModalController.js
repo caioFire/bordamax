@@ -67,7 +67,7 @@
                     console.log(response.status);
                 });
             } else{
-                vm.mensagem = retorno;
+                vm.mensagem = campos;
             }
 
         };

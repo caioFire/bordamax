@@ -47,7 +47,7 @@ public class AmostraCtrl {
         Pageable pageable = new PageRequest(filtros.getPaginaAtual(), filtros.getTamanhoPagina(),
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioAmostra(filtros);
-        Page<Localizacao> lista = amostraRepository.findAll(predicate, pageable);
+        Page<Amostra> lista = amostraRepository.findAll(predicate, pageable);
         return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
     }
 
