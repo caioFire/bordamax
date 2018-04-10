@@ -2,7 +2,6 @@ package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
 import com.bordamax.entity.Amostra;
-import com.bordamax.entity.Localizacao;
 import com.bordamax.repository.AmostraRepository;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,14 @@ public class AmostraCtrl {
 
     @Autowired
     private AmostraRepository amostraRepository;
+
+    //Find do aplicativo
+    @GetMapping("getAPP")
+    public ResponseEntity<?> getAPP( FiltroDto filtro ) {
+        Predicate predicate = whereByCriterioAmostra(filtro);
+        Iterable<Amostra> lista = amostraRepository.findAll(predicate);
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
 
     @GetMapping("getOne")
     public ResponseEntity<?> getOne(String codigo) {
