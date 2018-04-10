@@ -1,7 +1,6 @@
 package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
-import com.bordamax.entity.Localizacao;
 import com.bordamax.entity.Roles;
 import com.bordamax.entity.Usuario;
 import com.bordamax.repository.RoleRepository;
