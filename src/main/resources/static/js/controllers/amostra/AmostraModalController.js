@@ -62,7 +62,7 @@
             vm.mensagem = false;
             let campos = validaCampos(vm.amostra);
             if(!campos){
-                let url =  'http://localhost:8091/amostra/';
+                let url =  'http://localhost:8080/amostra/';
                 url += (params) ? 'update' : 'new';
                 $http({
                     method: 'POST',
@@ -85,7 +85,7 @@
         vm.carregarClientes = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8091/cliente/getAllByStatus?status=true'
+                url: 'http://localhost:8080/cliente/getAllByStatus?status=true'
             }).then(function successCallback(response) {
                 vm.clientes = response.data;
 
@@ -98,7 +98,7 @@
         vm.carregarLocalizacoes = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8091/localizacao/getAllByStatus?status=true'
+                url: 'http://localhost:8080/localizacao/getAllByStatus?status=true'
             }).then(function successCallback(response) {
                 vm.localizacoes = response.data;
                 // vm.amostra.localizacao = vm.localizacoes[0];

@@ -28,10 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
 //                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/amostra/**").permitAll()
 
+                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/login").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/home").hasAnyRole("ADMIN", "USER")

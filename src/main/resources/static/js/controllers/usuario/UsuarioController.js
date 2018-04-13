@@ -52,7 +52,7 @@
         vm.excluirUsuario = function (id) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8091/usuario/delete', data: id
+                url: 'http://localhost:8080/usuario/delete', data: id
             }).then(function successCallback(response) {
                 validaRetorno(response.data);
                 vm.tableParams.reload();

@@ -50,7 +50,7 @@
         vm.excluirAmostra = function (id) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8091/amostra/delete', data: id
+                url: 'http://localhost:8080/amostra/delete', data: id
             }).then(function successCallback(response) {
                 validaRetorno(response.data);
                 vm.tableParams.reload();

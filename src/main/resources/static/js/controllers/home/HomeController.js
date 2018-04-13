@@ -19,7 +19,7 @@
         vm.indicadorAmostras = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8091/amostra/getIndicador'
+                url: 'http://localhost:8080/amostra/getIndicador'
             }).then(function successCallback(response) {
                 vm.amostras = response.data;
                 return vm.amostras
@@ -31,7 +31,7 @@
         vm.indicadorClientes = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8091/cliente/getIndicador'
+                url: 'http://localhost:8080/cliente/getIndicador'
             }).then(function successCallback(response) {
                 vm.clientes = response.data;
                 return vm.clientes
@@ -43,7 +43,7 @@
         vm.indicadorLocalizacao = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8091/localizacao/getIndicador'
+                url: 'http://localhost:8080/localizacao/getIndicador'
             }).then(function successCallback(response) {
                 vm.localizacoes = response.data;
                 return vm.localizacoes
@@ -55,7 +55,7 @@
         vm.indicadorUsuarios = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8091/usuario/getIndicador'
+                url: 'http://localhost:8080/usuario/getIndicador'
             }).then(function successCallback(response) {
                 vm.usuarios = response.data;
                 return vm.usuarios

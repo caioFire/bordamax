@@ -51,7 +51,7 @@
         vm.excluirCliente = function (id) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8091/cliente/delete', data: id
+                url: 'http://localhost:8080/cliente/delete', data: id
             }).then(function successCallback(response) {
                 validaRetorno(response.data);
                 vm.tableParams.reload();

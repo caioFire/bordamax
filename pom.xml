@@ -6,8 +6,8 @@
 	<groupId>com.bordamax</groupId>
 	<artifactId>bordamax</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
+	<packaging>war</packaging>
+	<url>http://maven.apache.org</url>
 	<name>bordamax</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -32,9 +32,12 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -84,21 +87,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.thymeleaf</groupId>-->
-			<!--<artifactId>thymeleaf</artifactId>-->
-			<!--<version>3.0.2.RELEASE</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.thymeleaf</groupId>-->
-			<!--<artifactId>thymeleaf-spring4</artifactId>-->
-			<!--<version>3.0.2.RELEASE</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>nz.net.ultraq.thymeleaf</groupId>-->
-			<!--<artifactId>thymeleaf-layout-dialect</artifactId>-->
-			<!--<version>2.0.5</version>-->
-		<!--</dependency>-->
+
 
 		<!--Webjars-->
 		<dependency>
@@ -167,13 +156,20 @@
 			<version>3.2.0</version>
 		</dependency>
 
-
-
-
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>/bordamax</path>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
