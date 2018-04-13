@@ -2,10 +2,10 @@ package com.bordamax.filter;
 
 import com.bordamax.dto.FiltroDto;
 import com.bordamax.entity.QLocalizacao;
-//import com.mysema.query.BooleanBuilder;
-//import com.mysema.query.types.Predicate;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+
+
 
 
 /**
