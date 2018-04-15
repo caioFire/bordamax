@@ -10,15 +10,17 @@
     var appBordamax = angular.module("appAmostra");
 
     appBordamax.controller ("amostraModalController", function ($scope, $http, UploadInterfaceService,
-                                                                $uibModalInstance, params){
+                                                                $uibModalInstance, params,$q){
 
         var vm = this;
 
         vm.amostra = {
             status: true,
             cliente: null,
-            localizacao: null
+            localizacao: null,
+            urlImagens:[]
         };
+        vm.inSave = false;
 
 
         if(params){
@@ -30,7 +32,8 @@
                 portfolio: params.portfolio,
                 status: params.status,
                 cliente: params.cliente,
-                localizacao: params.localizacao
+                localizacao: params.localizacao,
+                urlImagens:[]
             }
         }
 
@@ -58,25 +61,50 @@
            }
         }
 
-        vm.cadastrarAmostra = function () {
+        vm.cadastrarAmostra = function (files) {
             vm.mensagem = false;
-            let campos = validaCampos(vm.amostra);
+            let campos = validaCampos(vm.amostra), url =  'http://localhost:8080/amostra/';
+
             if(!campos){
-                let url =  'http://localhost:8080/amostra/';
-                url += (params) ? 'update' : 'new';
-                $http({
-                    method: 'POST',
-                    url: url, data: vm.amostra
-                }).then(function successCallback(response) {
-                    let retorno = validaRetorno(response.data);
-                    if(retorno){
-                        vm.mensagem = response.data.mensagem;
-                    } else{
-                        vm.fecharModal(response.data.mensagem);
-                    }
-                }, function errorCallback(response) {
-                    console.log(response.status);
+                vm.inSave = true;
+                vm.upload(files,false,['img']).then(function (res) {
+                    /** Após upload, prosseguir com save **/
+
+                    let aux = angular.copy(vm.amostra);
+                    /** Adicionando url ao json de envio **/
+                    vm.amostra.urlImagens.push(
+                        {
+                            urlImagen:res,
+                            id:null,
+                            amostra:aux
+                        }
+                    );
+                    //console.log(JSON.stringify(vm.amostra));
+                    //return;
+
+                    url += (params) ? 'update' : 'new';
+                    $http({
+                        method: 'POST',
+                        url: url, data: vm.amostra
+                    }).then(function successCallback(response) {
+                        vm.inSave = false;
+                        let retorno = validaRetorno(response.data);
+                        if(retorno){
+                            vm.mensagem = response.data.mensagem;
+                        } else{
+                            vm.fecharModal(response.data.mensagem);
+                        }
+                    }, function errorCallback(response) {
+                        vm.inSave = false;
+                        console.log(response.status);
+                    });
+
+                },function (err) {
+                    /** Erro de upload, decidir se cancela ou continua o save**/
+                    vm.mensagem = err;
+                    vm.inSave = false;
                 });
+
             } else{
                 vm.mensagem = campos;
             }
@@ -108,17 +136,26 @@
         };
 
 
-        vm.upload = function (files,types) {
-            UploadInterfaceService.upload( files[0], false, types).
-            then(function (res) {
-                console.log(res)
+        /**
+         *  @files
+         *  @multiples
+         *  @types => array : ex: ['img','xml']
+         *  Retorna uma promise com o resultado final do upload
+         *  **/
+        vm.upload = function (files,multiples,types) {
+            let deferred = $q.defer();
+            UploadInterfaceService.upload( files, multiples, types).then(function (response) {
+                /** Upload Completo **/
+                vm.progress = 0;
+                deferred.resolve(response);
             },function ( err ) {
-                console.log(err)
+                console.log(err);
+                deferred.reject(err);
             },function (progress) {
-                console.log(progress)
-            })
-
-        }
+                vm.progress = progress;
+            });
+            return deferred.promise;
+        };
 
         vm.carregarClientes();
         vm.carregarLocalizacoes();

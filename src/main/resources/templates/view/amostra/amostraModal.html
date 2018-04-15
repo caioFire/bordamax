@@ -16,7 +16,7 @@
                             </button>
                             <strong>Atenção</strong> {{vm.mensagem}}
                         </div>
-                        <form class="form-horizontal form-label-left">
+                        <form class="form-horizontal form-label-left" name="formAmostra">
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label ">*Código</label>
                                 <div>
@@ -52,11 +52,30 @@
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label>*Imagens da Amostra</label>
                                 <div class="x_panel">
-                                    <img src="" style="height: 100%; width: 100%;" class="">
+                                    <div class="progress" ng-show="vm.progress >= 0">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped"
+                                             role="progressbar" aria-valuenow="{{vm.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.progress}}%">
+                                            <span class="">{{vm.progress}}% Complete (success)</span>
+                                        </div>
+                                    </div>
+
+                                    <!--<span class="progress" ng-show="picFile.progress >= 0">-->
+                                        <!--<div style="width:{{picFile.progress}}%"-->
+                                             <!--ng-bind="picFile.progress + '%'"></div>-->
+                                  <!--</span>-->
+
+                                    <!--<img ngf-thumbnail="picFile || '/thumb.jpg'" style="height: 100%; width: 100%;" class="">-->
+
+                                    <img style="height: 100%; width: 100%;" ng-show="picFile"
+                                         ngf-thumbnail="picFile" class="thumb">
+                                    <button class="btn btn-warning" ng-click="picFile = null" ng-show="picFile">
+                                        <i class="fa fa-trash-o"></i>
+                                        Remover
+                                    </button>
                                 </div>
                                 <input id="uploadinput" type="file" class="hide"  file
-                                       ngf-select="vm.upload($files,false,['xml','img','pdf'])"
-                                       ng-model="picFileOcorrencia"
+                                       ngf-select
+                                       ng-model="picFile"
                                        name="file" accept="/*" ngf-max-size="20MB" ngf-fix-orientation="true">
                                 <button class="btn btn-info btn-block"
                                         onclick="document.getElementById('uploadinput').click()">
@@ -70,7 +89,11 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="vm.cadastrarAmostra()">Salvar</button>
+        <!--ng-disabled="!formAmostra.$valid"-->
+        <button ng-disabled="!formAmostra.$valid || vm.inSave" class="btn btn-primary" type="button" ng-click="vm.cadastrarAmostra(picFile)">
+            <i ng-show="vm.inSave" class="fa fa-spinner fa-pulse fa-fw"></i>
+            Salvar
+        </button>
         <button class="btn btn-warning" type="button" ng-click="vm.fecharModal()">Cancelar</button>
     </div>
 

@@ -60,6 +60,21 @@
                     return false;
                 }
             },
+            fileSizeLabel : function (sizeLimit) {
+                // Convert Bytes To MB
+                return Math.round(sizeLimit / 1024 / 1024) + 'MB';
+            },
+            verifyTypesFiles: function (typeFile,types) {
+                var length = types.length,i,accept = false;
+                if(typeFile)
+                    for(i = 0; i < length; i++){
+                        if(types[i] == typeFile){
+                            accept = true;
+                            break;
+                        }
+                    }
+                return accept;
+            }
 
 }
     })

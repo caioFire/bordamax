@@ -8,14 +8,13 @@
 
     //this.Progress = 0;
     this.Upload = function (file) {
-        console.log('S3')
         var deferred = $q.defer();
         /** Get configs AWS **/
-        ParamsService.getAwsParamsfixed().then(function (result) {
+        ParamsService.getAwsParamsFixed().then(function (result) {
             // Us standard region
             AWS.config.region = 'us-west-2';
             AWS.config.update({ accessKeyId: result.accessKey, secretAccessKey: result.secretKey });
-            bucket = new AWS.S3({ params: { Bucket: result.bucket, maxRetries: 10 }, httpOptions: { timeout: 360000 }});
+            var bucket = new AWS.S3({ params: { Bucket: result.bucket, maxRetries: 10 }, httpOptions: { timeout: 360000 }});
 
             /** Cria um hash único **/
             var uniqueString = function () {

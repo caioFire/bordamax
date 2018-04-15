@@ -15,7 +15,7 @@
                     reject(err);
                 })
             })
-        },getAwsParamsfixed: function () {
+        },getAwsParamsFixed: function () {
             return $q(function (resolve, reject) {
                 resolve({accessKey:'AKIAJFS22SZT32VIQ5SA',secretKey:'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',bucket:'memoriasviagens'})
             })
