@@ -14,12 +14,6 @@
 
         var vm = this;
 
-        vm.amostra = {
-            status: true,
-            cliente: null,
-            localizacao: null
-        };
-
 
         if(params){
             console.log(params)
@@ -32,7 +26,8 @@
                 portfolio: params.portfolio,
                 status: params.status,
                 cliente: params.cliente,
-                localizacao: params.localizacao
+                localizacao: params.localizacao,
+                urlImagens: param.urlImagens
             }
         }
 

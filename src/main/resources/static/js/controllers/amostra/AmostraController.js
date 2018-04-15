@@ -100,7 +100,7 @@
             }
         });
 
-        vm.openAmostraViewModal = function (idAmostra) {
+        vm.openAmostraViewModal = function (Amostra) {
             var modalInstance = $uibModal.open({
                 templateUrl: "/amostraViewModal.html",
                 bindToController: true,
@@ -112,14 +112,11 @@
                 backdrop: 'true',
                 resolve:
                     {'params':function(){
-                        return idAmostra;
+                        return Amostra;
                     }}
-            });modalInstance.result.then(function (param) {
-                // if(param) {
-                //     vm.tableParams.reload();
-                //     vm.mensagem = param;
-                // }
-            })
+            });
+            // modalInstance.result.then(function (param) {
+            // })
         }
 
     });
