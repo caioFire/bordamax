@@ -18,9 +18,6 @@
         },getAwsParamsFixed: function () {
             return $q(function (resolve, reject) {
 
-                //resolve({accessKey:'AKIAJFS22SZT32VIQ5SA',secretKey:'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',bucket:'memoriasviagens'})
-                 resolve({accessKey:'AKIAIWFO4RZVJRSM3I2A',secretKey:'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',bucket:'bordamax'})
-
             })
         }
     }
