@@ -33,7 +33,7 @@
                 status: params.status,
                 cliente: params.cliente,
                 localizacao: params.localizacao,
-                urlImagem: params.urlImagem
+                urlImagem: "https://s3-us-west-1.amazonaws.com/bordamax/"+params.urlImagem
             }
         }
 
@@ -149,10 +149,51 @@
             return deferred.promise;
         };
 
+
+
+        vm.updateAmostra = function () {
+            vm.mensagem = false;
+            let campos = validaCampos(vm.amostra), url =  'http://localhost:8080/amostra/';
+
+            if(!campos){
+                vm.inSave = true;
+
+                url += (params) ? 'update' : 'new';
+                $http({
+                    method: 'POST',
+                    url: url, data: vm.amostra
+                }).then(function successCallback(response) {
+                    vm.inSave = false;
+                    let retorno = validaRetorno(response.data);
+                    if(retorno){
+                        vm.mensagem = response.data.mensagem;
+                    } else{
+                        vm.fecharModal(response.data.mensagem);
+                    }
+                }, function errorCallback(response) {
+                    vm.inSave = false;
+                    console.log(response.status);
+                });
+
+            } else{
+                vm.mensagem = campos;
+            }
+        };
+
+
+
+
+
         vm.carregarClientes();
         vm.carregarLocalizacoes();
 
     });
+
+
+
+
+
+
 })();
 
 

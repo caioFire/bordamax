@@ -78,6 +78,10 @@ public class AmostraCtrl {
         if(a != null && a.getId() != amostra.getId()){
             mensagem = "Já existe um registro cadastrado com esse nome!";
         } else {
+            if(amostra.getUrlImagem().contains("bordamax/")) {
+                String[] url = amostra.getUrlImagem().split("bordamax/");
+                amostra.setUrlImagem(url[1]);
+            }
             amostraRepository.save(amostra);
         }
         return new ResponseEntity<>("{\"mensagem\":\""+mensagem+"\"}", HttpStatus.OK);

@@ -59,24 +59,27 @@
                                         </div>
                                     </div>
 
-                                    <!--<span class="progress" ng-show="picFile.progress >= 0">-->
-                                        <!--<div style="width:{{picFile.progress}}%"-->
-                                             <!--ng-bind="picFile.progress + '%'"></div>-->
-                                  <!--</span>-->
-
-                                    <!--<img ngf-thumbnail="picFile || '/thumb.jpg'" style="height: 100%; width: 100%;" class="">-->
-
+                                    <!-- Salvar  -->
                                     <img style="height: 100%; width: 100%;" ng-show="picFile"
                                          ngf-thumbnail="picFile" class="thumb">
-                                    <button class="btn btn-warning" ng-click="picFile = null" ng-show="picFile">
+                                    <button class="btn alert-danger" ng-click="picFile = null" ng-show="picFile">
                                         <i class="fa fa-trash-o"></i>
-                                        Remover
+                                        Excluir
                                     </button>
+
+                                    <!-- Editar  -->
+                                    <img ng-if="vm.amostra.urlImagem" style="height: 100%; width: 100%;" ng-show="vm.amostra.urlImagem"
+                                         ngf-thumbnail="vm.amostra.urlImagem" class="thumb">
+                                    <button class="btn alert-danger" ng-click="vm.amostra.urlImagem = null" ng-show="vm.amostra.urlImagem">
+                                        <i class="fa fa-trash-o"></i>
+                                        Excluir
+                                    </button>
+
                                 </div>
                                 <input id="uploadinput" type="file" class="hide"  file
                                        ngf-select
                                        ng-model="picFile"
-                                       name="file" accept="/*" ngf-max-size="20MB" ngf-fix-orientation="true">
+                                       name="file" accept="/*" ngf-max-size="zMB" ngf-fix-orientation="true">
                                 <button class="btn btn-info btn-block"
                                         onclick="document.getElementById('uploadinput').click()">
                                     <i class="fa fa-clipboard"></i> Escolher Arquivo
@@ -89,8 +92,15 @@
         </div>
     </div>
     <div class="modal-footer">
-        <!--ng-disabled="!formAmostra.$valid"-->
-        <button ng-disabled="!formAmostra.$valid || vm.inSave" class="btn btn-primary" type="button" ng-click="vm.cadastrarAmostra(picFile)">
+
+        <!-- Editar, situacao onde é alterado a imagem (NECESSARIO)  -->
+        <button ng-if="!vm.amostra.id || !vm.amostra.urlImagem" ng-disabled="!formAmostra.$valid || vm.inSave" class="btn btn-primary" type="button" ng-click="vm.cadastrarAmostra(picFile)">
+            <i ng-show="vm.inSave" class="fa fa-spinner fa-pulse fa-fw"></i>
+            Salvar
+        </button>
+
+        <!-- Editar, situacao onde nao é alterado a imagem (NECESSARIO)  -->
+        <button ng-if="vm.amostra.urlImagem " ng-disabled="!formAmostra.$valid" class="btn btn-primary" type="button" ng-click="vm.updateAmostra()">
             <i ng-show="vm.inSave" class="fa fa-spinner fa-pulse fa-fw"></i>
             Salvar
         </button>
