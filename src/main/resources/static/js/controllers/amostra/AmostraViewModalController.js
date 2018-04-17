@@ -24,7 +24,8 @@
                 status: params.status,
                 cliente: params.cliente,
                 localizacao: params.localizacao,
-                urlImagens: params.urlImagens
+                //urlImagem: "https://s3-us-west-2.amazonaws.com/memoriasviagens/"+params.urlImagem
+                urlImagem: "https://s3-us-west-1.amazonaws.com/bordamax/"+params.urlImagem
             }
         }
 

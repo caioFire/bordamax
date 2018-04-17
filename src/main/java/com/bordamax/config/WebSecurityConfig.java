@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -28,24 +29,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-//                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/amostra/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
+               // .antMatchers(HttpMethod.GET, "/amostra/**").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/login").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/home").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/login/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
 
                 .antMatchers(HttpMethod.POST, "/cliente/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.POST, "/amostra/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.POST, "/localizacao/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/login").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/home").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/login/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/home/**").hasAnyRole("ADMIN", "USER")
 
                 .antMatchers(HttpMethod.GET, "/usuario/getIndicador").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN")
-                .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**").permitAll()
+                .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**", "/**").permitAll()
                 .anyRequest()
                 .authenticated()
             .and()

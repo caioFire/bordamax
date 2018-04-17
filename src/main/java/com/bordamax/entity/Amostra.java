@@ -32,8 +32,8 @@ public class Amostra implements Serializable{
     @Column( name = "status", nullable = false)
     private Boolean status = true;
 
-    @OneToMany(mappedBy = "amostra", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Imagem> urlImagens;
+    @Column( name = "url_imagem",length=200)
+    private String urlImagem;
 
     @ManyToOne
     @Basic(optional = false)
@@ -105,18 +105,11 @@ public class Amostra implements Serializable{
         this.descricao = descricao;
     }
 
-    public List<Imagem> getUrlImagens() {
-        return urlImagens;
+    public String getUrlImagem() {
+        return urlImagem;
     }
 
-    public void setUrlImagens(List<Imagem> urlImagens) {
-        this.urlImagens = urlImagens;
-    }
-
-    public void addUrlImagem(Imagem urlImagem) {
-        if(this.urlImagens == null){
-            this.urlImagens = new ArrayList<>();
-        }
-        this.urlImagens.add(urlImagem);
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
     }
 }

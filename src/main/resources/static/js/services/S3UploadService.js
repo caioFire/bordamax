@@ -12,7 +12,7 @@
         /** Get configs AWS **/
         ParamsService.getAwsParamsFixed().then(function (result) {
             // Us standard region
-            AWS.config.region = 'us-west-2';
+            AWS.config.region = 'us-west-1';
             AWS.config.update({ accessKeyId: result.accessKey, secretAccessKey: result.secretKey });
             var bucket = new AWS.S3({ params: { Bucket: result.bucket, maxRetries: 10 }, httpOptions: { timeout: 360000 }});
 

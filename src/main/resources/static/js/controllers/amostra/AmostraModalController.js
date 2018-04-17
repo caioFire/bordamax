@@ -18,7 +18,7 @@
             status: true,
             cliente: null,
             localizacao: null,
-            urlImagens:[]
+            urlImagem:null
         };
         vm.inSave = false;
 
@@ -33,7 +33,7 @@
                 status: params.status,
                 cliente: params.cliente,
                 localizacao: params.localizacao,
-                urlImagens:[]
+                urlImagem: params.urlImagem
             }
         }
 
@@ -72,15 +72,7 @@
 
                     let aux = angular.copy(vm.amostra);
                     /** Adicionando url ao json de envio **/
-                    vm.amostra.urlImagens.push(
-                        {
-                            urlImagen:res,
-                            id:null,
-                            amostra:aux
-                        }
-                    );
-                    //console.log(JSON.stringify(vm.amostra));
-                    //return;
+                    vm.amostra.urlImagem = res;
 
                     url += (params) ? 'update' : 'new';
                     $http({
