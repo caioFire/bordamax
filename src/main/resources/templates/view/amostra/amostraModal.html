@@ -75,15 +75,15 @@
                                         Excluir
                                     </button>
 
+                                    <input id="uploadinput" type="file" class="hide"  file
+                                           ngf-select
+                                           ng-model="picFile"
+                                           name="file" accept="/*" ngf-max-size="zMB" ngf-fix-orientation="true">
+                                    <button class="btn btn-primary" ng-disabled="picFile || vm.amostra.urlImagem"
+                                            onclick="document.getElementById('uploadinput').click()">
+                                        <i class="fa fa-clipboard"></i> Escolher Arquivo
+                                    </button>
                                 </div>
-                                <input id="uploadinput" type="file" class="hide"  file
-                                       ngf-select
-                                       ng-model="picFile"
-                                       name="file" accept="/*" ngf-max-size="zMB" ngf-fix-orientation="true">
-                                <button class="btn btn-info btn-block"
-                                        onclick="document.getElementById('uploadinput').click()">
-                                    <i class="fa fa-clipboard"></i> Escolher Arquivo
-                                </button>
                             </div>
                         </form>
                     </div>
