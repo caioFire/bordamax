@@ -51,7 +51,7 @@
             vm.mensagem = false;
             let campos = validaCampos(vm.cliente);
             if(!campos){
-                let url =  'http://localhost:8080/cliente/';
+                let url =  'http://18.219.249.32:8080/cliente/';
                 url += (params) ? 'update' : 'new';
                 $http({
                     method: 'POST',

@@ -15,11 +15,13 @@
         vm.localizacoes = {};
         vm.usuarios = {};
 
-
         vm.indicadorAmostras = function () {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json', 'text/plain');
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/amostra/getIndicador'
+                url: 'http://18.219.249.32:8080/amostra/getIndicador',
+                headers:{headers:headers}
             }).then(function successCallback(response) {
                 vm.amostras = response.data;
                 return vm.amostras
@@ -31,7 +33,7 @@
         vm.indicadorClientes = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/cliente/getIndicador'
+                url: 'http://18.219.249.32:8080/cliente/getIndicador'
             }).then(function successCallback(response) {
                 vm.clientes = response.data;
                 return vm.clientes
@@ -43,7 +45,7 @@
         vm.indicadorLocalizacao = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/localizacao/getIndicador'
+                url: 'http://18.219.249.32:8080/localizacao/getIndicador'
             }).then(function successCallback(response) {
                 vm.localizacoes = response.data;
                 return vm.localizacoes
@@ -55,7 +57,7 @@
         vm.indicadorUsuarios = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/usuario/getIndicador'
+                url: 'http://18.219.249.32:8080/usuario/getIndicador'
             }).then(function successCallback(response) {
                 vm.usuarios = response.data;
                 return vm.usuarios

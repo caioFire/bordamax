@@ -22,7 +22,7 @@ import static com.bordamax.filter.LocalizacaoQuery.whereByCriterioLocalizacao;
 /**
  * Created by fire on 13/03/18.
  */
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/localizacao")
 public class LocalizacaoCtrl {

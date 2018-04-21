@@ -52,7 +52,7 @@
             vm.mensagem = false;
             let campos = validaCampos(vm.localizacao);
             if(!campos) {
-                let url = 'http://localhost:8080/localizacao/';
+                let url = 'http://18.219.249.32:8080/localizacao/';
                 url += (params) ? 'update' : 'new';
                 $http({
                     method: 'POST',

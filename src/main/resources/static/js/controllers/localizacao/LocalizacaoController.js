@@ -52,7 +52,7 @@
         vm.excluirLocalizacao = function (id) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/localizacao/delete', data: id
+                url: 'http://18.219.249.32:8080/localizacao/delete', data: id
             }).then(function successCallback(response) {
                 validaRetorno(response.data);
                 vm.tableParams.reload();
