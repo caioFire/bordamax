@@ -1,6 +1,8 @@
 package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
+import com.bordamax.dto.ResponseDto;
+import com.bordamax.entity.Localizacao;
 import com.bordamax.entity.Roles;
 import com.bordamax.entity.Usuario;
 import com.bordamax.repository.RoleRepository;
@@ -15,6 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.bordamax.filter.UsuarioQuery.whereByCriterioUsuario;
 
@@ -55,7 +60,9 @@ public class UsuarioCtrl {
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioUsuario(filtros);
         Page<Usuario> lista = usuarioRepository.findAll(predicate, pageable);
-        return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
+        ResponseDto responseDto = convertListEntityToListDTO(lista);
+        responseDto.setQtdeRegistros(lista.getTotalElements());
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @PostMapping("new")
@@ -110,7 +117,15 @@ public class UsuarioCtrl {
         return new ResponseEntity<>("{\"mensagem\":\"Registro excluido com sucesso!\"}", HttpStatus.OK);
     }
 
-
+    private ResponseDto convertListEntityToListDTO(Page<Usuario> result) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Usuario> lista = new ArrayList<>();
+        for (Usuario localizacao : result) {
+            lista.add(localizacao);
+        }
+        responseDto.setListaUsuario(lista);
+        return responseDto;
+    }
 
 
 

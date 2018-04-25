@@ -1,6 +1,8 @@
 package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
+import com.bordamax.dto.ResponseDto;
+import com.bordamax.entity.Amostra;
 import com.bordamax.entity.Cliente;
 import com.bordamax.entity.Localizacao;
 import com.bordamax.repository.AmostraRepository;
@@ -14,6 +16,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.bordamax.filter.ClienteQuery.whereByCriterioCliente;
 
@@ -53,8 +58,11 @@ public class ClienteCtrl {
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioCliente(filtros);
         Page<Cliente> lista = clienteRepository.findAll(predicate, pageable);
-        return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
+        ResponseDto responseDto = convertListEntityToListDTO(lista);
+        responseDto.setQtdeRegistros(lista.getTotalElements());
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
+
     @PostMapping("new")
     public ResponseEntity<?> newUser(@RequestBody Cliente cliente) {
         String mensagem = "Registro cadastrado com sucesso!";
@@ -88,5 +96,15 @@ public class ClienteCtrl {
             clienteRepository.delete(id);
         }
         return new ResponseEntity<>("{\"mensagem\":\""+mensagem+"\"}", HttpStatus.OK);
+    }
+
+    private ResponseDto convertListEntityToListDTO(Page<Cliente> result) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Cliente> lista = new ArrayList<>();
+        for (Cliente cliente : result) {
+            lista.add(cliente);
+        }
+        responseDto.setListaCliente(lista);
+        return responseDto;
     }
 }

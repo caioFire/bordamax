@@ -2,6 +2,8 @@
 <html ng-app="appAmostra" lang="en" data-layout-decorate="~{fragments/layout}">
 <head>
     <title>Amostras</title>
+    <link rel="shortcut icon" href="/images/iconesite.ico" />
+
 </head>
 
 <body ng-controller="amostraController as vm">
@@ -52,9 +54,9 @@
                                 <td title="'Localizaçãoo'" sortable="'localizacao.nome'" ng-click="vm.openAmostraViewModal(amostra)">
                                     {{amostra.localizacao.nome}}</td>
                                 <td title="'Portfólio'" sortable="'portfolio'" ng-click="vm.openAmostraViewModal(amostra)">
-                                    {{amostra.portfolio}}</td>
+                                    {{amostra.portfolio ? 'Sim' : 'Não'}}</td>
                                 <td title="'Status'" sortable="'status'" ng-click="vm.openAmostraViewModal(amostra)">
-                                    {{amostra.status}}</td>
+                                    {{amostra.status ? 'Ativo' : 'Inativo'}}</td>
                                 <td title="'Ações'" class="col-md-2">
                                     <a href="#" ng-click="vm.openAmostraModal(amostra)" title="Editar" class="fa fa-edit"
                                        style="font-size:24px; margin-left: 10px">

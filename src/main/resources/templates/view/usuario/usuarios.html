@@ -2,6 +2,8 @@
 <html ng-app="appUsuario" lang="en" data-layout-decorate="~{fragments/layout}">
 <head>
     <title>Usuários</title>
+    <link rel="shortcut icon" href="/images/iconesite.ico" />
+
 </head>
 
 <body ng-controller="usuarioController as vm">
@@ -50,9 +52,9 @@
                             <tr ng-repeat="usuario in $data" >
                                 <td title="'Nome'" sortable="'nome'"> {{usuario.nome}}</td>
                                 <td title="'Login'" sortable="'identificacao'">{{usuario.identificacao}}</td>
-                                <td title="'Email'" sortable="'email'">{{usuario.email}}</td>
-                                <td title="'Administrador'" >{{usuario.admin}}</td>
-                                <td title="'Status'" sortable="'status'">{{usuario.status}}</td>
+                                <!--<td title="'Email'" sortable="'email'">{{usuario.email}}</td>-->
+                                <td title="'Administrador'" >{{usuario.admin ? 'Sim' : 'Não'}}</td>
+                                <td title="'Status'" sortable="'status'">{{usuario.status ? 'Ativo' : 'Inativo'}}</td>
                                 <td title="'Ações'" class="col-md-2">
                                     <a href="#" ng-click="vm.openUsuarioModal(usuario)" title="Editar" class="fa fa-edit"
                                        style="font-size:24px; margin-left: 10px">

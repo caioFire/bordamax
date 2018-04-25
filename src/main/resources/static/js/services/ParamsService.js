@@ -18,6 +18,8 @@
         },getAwsParamsFixed: function () {
             return $q(function (resolve, reject) {
 
+                 resolve({accessKey:'AKIAIC234XTJBTLUA6QA',secretKey:'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',bucket:'bordamax'})
+
             })
         }
     }

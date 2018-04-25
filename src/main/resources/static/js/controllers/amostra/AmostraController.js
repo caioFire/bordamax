@@ -89,9 +89,8 @@
 
                 /** Requisição **/
                 return AmostraService.getAmostra(dataFilter).then(function (response) {
-                    vm.amostras = response;
-                    params.total(vm.amostras.length);
-                    console.log(vm.amostras)
+                    params.total(response.qtdeRegistros);
+                    vm.amostras = response.listaAmostras;
                     return vm.amostras
                 },function (err) {
                     console.log(err)

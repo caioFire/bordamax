@@ -91,9 +91,8 @@
 
                 /** Requisição **/
                 return UsuarioService.getUsuario(dataFilter).then(function (response) {
-                    vm.usuarios = response;
-                    params.total(vm.usuarios.length);
-                    console.log(vm.usuarios)
+                    params.total(response.qtdeRegistros);
+                    vm.usuarios = response.listaUsuario;
                     return vm.usuarios
                 },function (err) {
                     console.log(err)

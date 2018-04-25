@@ -91,9 +91,8 @@
 
                 /** Requisição **/
                 return LocalizacaoService.getLocalizacao(dataFilter).then(function (response) {
-                    vm.localizacoes = response;
-                    params.total(vm.localizacoes.length);
-                    //console.log(vm.localizacoes)
+                    params.total(response.qtdeRegistros);
+                    vm.localizacoes = response.listaLocalizacao;
                     return vm.localizacoes
                 },function (err) {
                     console.log(err)

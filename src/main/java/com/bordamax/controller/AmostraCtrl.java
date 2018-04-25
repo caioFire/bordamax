@@ -1,6 +1,7 @@
 package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
+import com.bordamax.dto.ResponseDto;
 import com.bordamax.entity.Amostra;
 import com.bordamax.repository.AmostraRepository;
 import com.querydsl.core.types.Predicate;
@@ -12,6 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.bordamax.filter.AmostraQuery.whereByCriterioAmostra;
 
@@ -31,6 +35,14 @@ public class AmostraCtrl {
     public ResponseEntity<?> getAPP( FiltroDto filtro ) {
         Predicate predicate = whereByCriterioAmostra(filtro);
         Iterable<Amostra> lista = amostraRepository.findAll(predicate);
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+    //Find do aplicativo pesquisa
+    @GetMapping("getAPPPesquisa")
+    public ResponseEntity<?> getAPPPesquisa( FiltroDto filtro ) {
+        Predicate predicate = whereByCriterioAmostra(filtro);
+        Iterable<Amostra> lista = amostraRepository.findTopByAPPPesquisa(filtro.getCodigo());
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
@@ -55,7 +67,9 @@ public class AmostraCtrl {
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioAmostra(filtros);
         Page<Amostra> lista = amostraRepository.findAll(predicate, pageable);
-        return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
+        ResponseDto responseDto = convertListEntityToListDTO(lista);
+        responseDto.setQtdeRegistros(lista.getTotalElements());
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @PostMapping("new")
@@ -91,6 +105,17 @@ public class AmostraCtrl {
     public ResponseEntity<?> delete(@RequestBody Long id) {
         amostraRepository.delete(id);
         return new ResponseEntity<>("{\"mensagem\":\"Registro excluido com sucesso!\"}", HttpStatus.OK);
+    }
+
+
+    private ResponseDto convertListEntityToListDTO(Page<Amostra> result) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Amostra> lista = new ArrayList<>();
+        for (Amostra amostra : result) {
+            lista.add(amostra);
+        }
+        responseDto.setListaAmostras(lista);
+        return responseDto;
     }
 }
 

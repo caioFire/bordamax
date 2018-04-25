@@ -25,7 +25,7 @@
             vm.usuario = {
                 id: params.id,
                 nome: params.nome,
-                email: params.email,
+                //email: params.email,
                 identificacao: params.identificacao,
                 senha: params.senha,
                 status: params.status,
@@ -44,9 +44,11 @@
                 return "Favor preencher os campos obrigatorios (*)";
             } else if(!dados.identificacao){
                 return "Favor preencher os campos obrigatorios (*)";
-            } else if(!dados.email){
-                return "Favor preencher os campos obrigatorios (*)";
-            } else{
+            }
+            // else if(!dados.email){
+            //     return "Favor preencher os campos obrigatorios (*)";
+            // }
+            else{
                 return false;
             }
         }

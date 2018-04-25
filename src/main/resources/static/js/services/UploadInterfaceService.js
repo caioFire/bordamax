@@ -7,7 +7,7 @@
 
             this.upload = function (file, multiples, types) {
 
-                var sizeLimit = 10585760; // 10MB in Bytes
+                var sizeLimit = 2646440 ; // 10585760=10MB in Bytes / 2646440=2,5MB
                 var uploadProgress = 0;
                 var deferred = $q.defer();
 

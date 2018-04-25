@@ -32,8 +32,8 @@ public class Usuario implements Serializable , UserDetails{
     @Column( name = "senha", length = 256, nullable = false)
     private String senha;
 
-    @Column( name = "email", length = 25, nullable = false)
-    private String email;
+//    @Column( name = "email", length = 25, nullable = false)
+//    private String email;
 
     @Column( name = "status")
     private Boolean status = true;
@@ -99,13 +99,13 @@ public class Usuario implements Serializable , UserDetails{
         return serialVersionUID;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public List<Roles> getRoles() {
         return roles;

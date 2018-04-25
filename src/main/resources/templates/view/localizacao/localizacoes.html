@@ -2,6 +2,8 @@
 <html ng-app="appLocalizacao" lang="en" data-layout-decorate="~{fragments/layout}">
 <head>
     <title>Localizações</title>
+    <link rel="shortcut icon" href="/images/iconesite.ico" />
+
 </head>
 
 <body ng-controller="localizacaoController as vm">
@@ -51,7 +53,7 @@
                         <table ng-table="vm.tableParams" class="table table-bordered table-hover text-center" >
                             <tr ng-repeat="local in $data" >
                                 <td title="'Local'" sortable="'nome'"> {{local.nome}}</td>
-                                <td title="'Status'" sortable="'status'">{{local.status}}</td>
+                                <td title="'Status'" sortable="'status'">{{local.status ? 'Ativo' : 'Inativo'}}</td>
                                 <td title="'Ações'" class="col-md-2">
                                     <a href="#" ng-click="vm.openLocalizacaoModal(local)" title="Editar" class="fa fa-edit"
                                     style="font-size:24px; margin-left: 10px">

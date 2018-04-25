@@ -2,6 +2,8 @@
 <html ng-app="appCliente" lang="en" data-layout-decorate="~{fragments/layout}">
 <head>
     <title>Clientes</title>
+    <link rel="shortcut icon" href="/images/iconesite.ico" />
+
 </head>
 
 <body ng-controller="clienteController as vm">
@@ -51,7 +53,7 @@
                             <table ng-table="vm.tableParams" class="table table-bordered table-hover text-center" >
                                 <tr ng-repeat="cliente in $data" >
                                     <td title="'Cliente'" sortable="'nome'"> {{cliente.nome}}</td>
-                                    <td title="'Status'" sortable="'status'">{{cliente.status}}</td>
+                                    <td title="'Status'" sortable="'status'">{{cliente.status ? 'Ativo' : 'Inativo'}}</td>
                                     <td title="'Ações'" class="col-md-2">
                                         <a href="#" ng-click="vm.openClienteModal(cliente)" title="Editar" class="fa fa-edit"
                                            style="font-size:24px; margin-left: 10px">

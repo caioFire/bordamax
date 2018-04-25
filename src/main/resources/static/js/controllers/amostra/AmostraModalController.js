@@ -153,7 +153,7 @@
 
         vm.updateAmostra = function () {
             vm.mensagem = false;
-            let campos = validaCampos(vm.amostra), url =  'http://18.219.249.325:8080/amostra/';
+            let campos = validaCampos(vm.amostra), url =  'http://18.219.249.32:8080/amostra/';
 
             if(!campos){
                 vm.inSave = true;

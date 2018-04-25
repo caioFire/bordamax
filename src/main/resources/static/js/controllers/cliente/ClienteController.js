@@ -90,9 +90,8 @@
 
                 /** Requisição **/
                 return ClienteService.getCliente(dataFilter).then(function (response) {
-                    vm.clientes = response;
-                    params.total(vm.clientes.length);
-                    console.log(vm.clientes)
+                    params.total(response.qtdeRegistros);
+                    vm.clientes = response.listaCliente;
                     return vm.clientes
                 },function (err) {
                     console.log(err)

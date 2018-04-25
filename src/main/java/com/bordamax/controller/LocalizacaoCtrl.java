@@ -1,6 +1,8 @@
 package com.bordamax.controller;
 
 import com.bordamax.dto.FiltroDto;
+import com.bordamax.dto.ResponseDto;
+import com.bordamax.entity.Cliente;
 import com.bordamax.entity.Localizacao;
 import com.bordamax.repository.AmostraRepository;
 import com.bordamax.repository.LocalizacaoRepository;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.bordamax.filter.LocalizacaoQuery.whereByCriterioLocalizacao;
@@ -54,7 +57,9 @@ public class LocalizacaoCtrl {
                 filtros.getAscendente() ? Sort.Direction.ASC : Sort.Direction.DESC, filtros.getCampoOrderBy());
         Predicate predicate = whereByCriterioLocalizacao(filtros);
         Page<Localizacao> lista = localizacaoRepository.findAll(predicate, pageable);
-        return new ResponseEntity<>(lista.getContent(), HttpStatus.OK);
+        ResponseDto responseDto = convertListEntityToListDTO(lista);
+        responseDto.setQtdeRegistros(lista.getTotalElements());
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @PostMapping("new")
@@ -89,5 +94,15 @@ public class LocalizacaoCtrl {
             localizacaoRepository.delete(id);
         }
         return new ResponseEntity<>("{\"mensagem\":\""+mensagem+"\"}", HttpStatus.OK);
+    }
+
+    private ResponseDto convertListEntityToListDTO(Page<Localizacao> result) {
+        ResponseDto responseDto = new ResponseDto();
+        List<Localizacao> lista = new ArrayList<>();
+        for (Localizacao localizacao : result) {
+            lista.add(localizacao);
+        }
+        responseDto.setListaLocalizacao(lista);
+        return responseDto;
     }
 }
