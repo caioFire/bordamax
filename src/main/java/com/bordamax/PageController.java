@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
 
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String login() { return "login";}
 
     @GetMapping("/home")

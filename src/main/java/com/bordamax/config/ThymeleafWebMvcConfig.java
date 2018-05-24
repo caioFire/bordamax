@@ -45,14 +45,5 @@ public class ThymeleafWebMvcConfig extends WebMvcConfigurerAdapter  {
         return templateResolver;
     }
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("http://localhost:8080", "*")
-//                .allowedMethods("POST", "GET",  "PUT", "OPTIONS", "DELETE")
-//                .allowedHeaders("application/json", "Content-Type","text/plain")
-//                .exposedHeaders("custom-header1", "custom-header2")
-//                .allowCredentials(false)
-//                .maxAge(4800);
-//    }
+
 }

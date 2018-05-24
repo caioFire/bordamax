@@ -38,44 +38,41 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
 
-//                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ROLE_ADMIN", "USER")
-//                .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN","USER")
-//                .antMatchers(HttpMethod.GET, "/login/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
-//
-//                .antMatchers(HttpMethod.POST, "/cliente/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers(HttpMethod.POST, "/amostra/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers(HttpMethod.POST, "/localizacao/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers(HttpMethod.POST, "/login/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers(HttpMethod.POST, "/home/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ROLE_ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
 
-//                .antMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/cliente/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/amostra/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/localizacao/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/login/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/home/**").hasAnyRole("ADMIN", "USER")
+
+                .antMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
+
+                //app
+                .antMatchers(HttpMethod.GET, "/amostra/getAPPPortfolio").permitAll()
+                .antMatchers(HttpMethod.GET, "/amostra/getAPPPesquisa").permitAll()
 
 
-                .antMatchers(HttpMethod.GET, "/home/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/cliente/**").permitAll()
+                //.requestMatchers(CorsUtils::isCorsRequest).permitAll()
 
-                .antMatchers(HttpMethod.POST, "/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/**").permitAll()
-                .antMatchers(HttpMethod.PUT, "/**").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/**").permitAll()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
-                .requestMatchers(CorsUtils::isCorsRequest).permitAll()
-
-                .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**", "/**").permitAll()
-                .anyRequest()
-                .authenticated()
+               // .antMatchers("/css/**", "/js/**", "/webjars/**","/resources/**").permitAll()
+               // .anyRequest()
+               // .authenticated()
             .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/")
                 .defaultSuccessUrl("/home",true)
                 .permitAll()
             .and()
                 .logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .and()
                 .httpBasic()
@@ -83,10 +80,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable().authorizeRequests();
 
-//        http
-//                .headers()
-//                .frameOptions()
-//                .disable();
 
     }
 
@@ -95,32 +88,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(custonUsuarioDetailService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(Arrays.asList("*"));
-//        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
-//        configuration.setAllowedHeaders(Arrays.asList( "*","text/plain","application/json", "Access-Control-Allow-Headers", "Authorization, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
-//                "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"));
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-
-
-//    @Bean
-//    public FilterRegistrationBean corsFilter() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.addAllowedOrigin("*");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("*");
-//        source.registerCorsConfiguration("/**", config);
-//        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-//        bean.setOrder(0);
-//        return bean;
-//    }
 }
 
 

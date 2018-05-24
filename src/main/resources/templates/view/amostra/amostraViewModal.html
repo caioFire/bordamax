@@ -24,8 +24,8 @@
                             </div>
                             <div class="form-group col-md-6 ">
                                 <h2><strong>Localização:</strong> {{vm.amostra.localizacao.nome}}</h2>
-                                <h2><strong>Status:</strong> {{vm.amostra.status}}</h2>
-                                <h2><strong>Portfolio:</strong> {{vm.amostra.portfolio}}</h2>
+                                <h2><strong>Status:</strong> {{vm.amostra.status ? 'Ativo' : 'Inativo'}}</h2>
+                                <h2><strong>Portfolio:</strong> {{vm.amostra.portfolio ? 'Sim' : 'Não'}}</h2>
                             </div>
                         </form>
                     </div>

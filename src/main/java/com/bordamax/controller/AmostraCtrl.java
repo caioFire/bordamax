@@ -30,8 +30,8 @@ public class AmostraCtrl {
     @Autowired
     private AmostraRepository amostraRepository;
 
-    //Find do aplicativo
-    @GetMapping("getAPP")
+    //Find do aplicativo portfolio
+    @GetMapping("getAPPPortfolio")
     public ResponseEntity<?> getAPP( FiltroDto filtro ) {
         Predicate predicate = whereByCriterioAmostra(filtro);
         Iterable<Amostra> lista = amostraRepository.findAll(predicate);

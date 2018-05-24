@@ -63,7 +63,7 @@
 
         vm.cadastrarAmostra = function (files) {
             vm.mensagem = false;
-            let campos = validaCampos(vm.amostra), url =  'http://18.219.249.32:8080/amostra/';
+            let campos = validaCampos(vm.amostra), url =  'http://23.235.228.203/amostra/';
 
             if(!campos){
                 vm.inSave = true;
@@ -105,7 +105,7 @@
         vm.carregarClientes = function () {
             $http({
                 method: 'GET',
-                url: 'http://18.219.249.32:8080/cliente/getAllByStatus?status=true'
+                url: 'http://23.235.228.203/cliente/getAllByStatus?status=true'
             }).then(function successCallback(response) {
                 vm.clientes = response.data;
 
@@ -118,7 +118,7 @@
         vm.carregarLocalizacoes = function () {
             $http({
                 method: 'GET',
-                url: 'http://18.219.249.32:8080/localizacao/getAllByStatus?status=true'
+                url: 'http://23.235.228.203/localizacao/getAllByStatus?status=true'
             }).then(function successCallback(response) {
                 vm.localizacoes = response.data;
                 // vm.amostra.localizacao = vm.localizacoes[0];
@@ -153,7 +153,7 @@
 
         vm.updateAmostra = function () {
             vm.mensagem = false;
-            let campos = validaCampos(vm.amostra), url =  'http://18.219.249.32:8080/amostra/';
+            let campos = validaCampos(vm.amostra), url =  'http://23.235.228.203/amostra/';
 
             if(!campos){
                 vm.inSave = true;

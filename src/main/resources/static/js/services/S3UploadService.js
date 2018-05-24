@@ -40,7 +40,7 @@
                 return palavra;
             };
             /** Verificar nameAnexo **/
-            var fileNameAnexo = removeEspecialChars(uniqueString()+'-caio-'+file.name);
+            var fileNameAnexo = removeEspecialChars(uniqueString()+'-bordamax-'+file.name);
             var params = {
                 Bucket: result.bucket,
                 Key: fileNameAnexo,

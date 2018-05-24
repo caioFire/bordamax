@@ -11,7 +11,7 @@
                 return $q(function (resolve,reject) {
                     $http({
                         method: 'GET',
-                        url: 'http://18.219.249.32:8080/localizacao/getAllBy'+Utils.buildQuery(dataFilter)
+                        url: 'http://23.235.228.203/localizacao/getAllBy'+Utils.buildQuery(dataFilter)
                     }).then(function successCallback(response) {
                         resolve (response.data)
                     }, function errorCallback(response) {
