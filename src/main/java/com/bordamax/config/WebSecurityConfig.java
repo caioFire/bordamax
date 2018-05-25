@@ -56,8 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
 
                 //app
-                .antMatchers(HttpMethod.GET, "/amostra/getAPPPortfolio").permitAll()
-                .antMatchers(HttpMethod.GET, "/amostra/getAPPPesquisa").permitAll()
+                .antMatchers(HttpMethod.GET, "/amostra/**").permitAll()
 
 
                 //.requestMatchers(CorsUtils::isCorsRequest).permitAll()
