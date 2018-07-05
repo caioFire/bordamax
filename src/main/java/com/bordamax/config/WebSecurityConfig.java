@@ -38,25 +38,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
 
-                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ROLE_ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN","USER")
-                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.GET, "/amostra/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ROLE_ADMIN", "USER")
+//                .antMatchers(HttpMethod.GET, "/localizacao/**").hasAnyRole("ADMIN","USER")
+//                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
+//
+//                .antMatchers(HttpMethod.POST, "/cliente/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.POST, "/amostra/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.POST, "/localizacao/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.POST, "/login/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.POST, "/home/**").hasAnyRole("ADMIN", "USER")
+//
+//                .antMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN")
+//
+//                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
+//                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
+//
 
-                .antMatchers(HttpMethod.POST, "/cliente/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/amostra/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/localizacao/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/login/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/home/**").hasAnyRole("ADMIN", "USER")
-
-                .antMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN")
-
-                .antMatchers(HttpMethod.GET, "/home/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.GET, "/cliente/**").hasAnyRole("ADMIN", "USER")
-
-                //app
-                .antMatchers(HttpMethod.GET, "/amostra/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/**/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/**/**").permitAll()
 
 
                 //.requestMatchers(CorsUtils::isCorsRequest).permitAll()
